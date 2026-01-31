@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Art Marketplace</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body class="index-page">
+
+<!-- Animated background -->
+<div class="bg-gradient"></div>
+
+<!-- Main content -->
+<div class="hero-container">
+    <div class="hero-card">
+        <h1 class="hero-title">Digital Art Marketplace</h1>
+        <p class="hero-subtitle">
+            Discover · Upload · Buy stunning digital artworks
+        </p>
+
+        <div class="hero-actions">
+            <a th:href="@{/login}" class="btn btn-primary">Login</a>
+            <a th:href="@{/register}" class="btn btn-secondary">Create Account</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

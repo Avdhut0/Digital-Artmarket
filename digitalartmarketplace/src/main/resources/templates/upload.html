@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Upload Artwork</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body class="upload-page">
+
+<div class="upload-container">
+
+    <div class="upload-card">
+
+        <h2 class="upload-title">Upload New Artwork</h2>
+        <p class="upload-subtitle">
+            Share your creativity with the world
+        </p>
+
+        <form th:action="@{/upload}" method="post" enctype="multipart/form-data">
+
+            <div class="form-row">
+                <label>Artwork Title</label>
+                <input type="text" name="title" required>
+            </div>
+
+            <div class="form-row">
+                <label>Description</label>
+                <textarea name="description" rows="4" required></textarea>
+            </div>
+
+            <div class="form-row">
+                <label>Price (₹)</label>
+                <input type="number" name="price" required>
+            </div>
+
+            <div class="form-row">
+                <label>Artwork Image</label>
+                <input type="file" name="image" required>
+            </div>
+
+            <button type="submit" class="upload-btn">
+                Upload Artwork
+            </button>
+
+        </form>
+
+        <a th:href="@{/dashboard}" class="upload-back">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

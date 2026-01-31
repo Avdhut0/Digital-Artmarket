@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>UPI Payment</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body class="upi-page">
+
+<div class="upi-container">
+
+    <div class="upi-card">
+
+        <!-- Title -->
+        <h2 class="upi-title">Complete Your Payment</h2>
+        <p class="upi-subtitle">
+            Scan the QR code or enter your UPI ID
+        </p>
+
+        <!-- YOUR PERSONAL UPI QR -->
+        <div class="upi-qr">
+            <img th:src="@{/images/my-upi-qr.jpeg}" alt="My UPI QR Code">
+            <p class="upi-hint">
+                Pay to <strong>ubaleavdhut@oksbi</strong>
+            </p>
+        </div>
+
+        <!-- OR -->
+        <div class="upi-or">OR</div>
+
+        <!-- Manual UPI Entry -->
+        <form th:action="@{/payment/confirm}" method="post">
+
+            <!-- Artwork ID passed safely -->
+            <input type="hidden" name="artworkId" th:value="${artworkId}">
+
+            <div class="form-row">
+                <label>Enter UPI ID</label>
+                <input type="text" placeholder="example@upi" required>
+            </div>
+
+            <button type="submit" class="upi-pay-btn">
+                Confirm Payment
+            </button>
+        </form>
+
+        <!-- Back -->
+        <a th:href="@{/gallery}" class="upi-back">
+            ← Cancel & go back
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

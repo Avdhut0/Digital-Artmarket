@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body class="buy-page">
+
+<div class="buy-container">
+
+    <div class="buy-card">
+
+        <!-- LEFT: ARTWORK PREVIEW -->
+        <div class="buy-preview">
+            <img th:src="@{'/uploads/' + ${artwork.imageName}}" alt="Artwork">
+
+            <h2 th:text="${artwork.title}">Artwork Title</h2>
+            <p th:text="${artwork.description}">
+                Artwork description goes here.
+            </p>
+        </div>
+
+        <!-- RIGHT: PAYMENT DETAILS -->
+        <div class="buy-details">
+            <h3>Order Summary</h3>
+
+            <div class="info-row">
+                <span>Artist</span>
+                <span th:text="${artwork.artist.name}">Artist Name</span>
+            </div>
+
+            <div class="info-row">
+                <span>Artwork</span>
+                <span th:text="${artwork.title}">Title</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="price">
+                ₹ <span th:text="${artwork.price}">0</span>
+            </div>
+
+            <div class="buy-actions">
+                <form th:action="@{/upi}" method="get">
+                    <input type="hidden" name="artworkId" th:value="${artwork.id}">
+                    <button type="submit" class="btn-pay">Pay Now</button>
+                </form>
+
+                <a th:href="@{/gallery}" class="btn-cancel">Cancel</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

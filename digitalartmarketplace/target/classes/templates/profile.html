@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile | Digital Art Marketplace</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body class="profile-page">
+
+<div class="bg-gradient"></div>
+
+<div class="profile-wrapper">
+
+    <!-- ================= PROFILE CARD ================= -->
+    <div class="profile-card">
+
+        <!-- PROFILE AVATAR -->
+        <div class="profile-avatar">
+
+            <!-- IMAGE IF EXISTS -->
+            <img th:if="${user.profileImage != null}"
+                 th:src="@{'/uploads/profile/' + ${user.profileImage}}"
+                 alt="Profile Image"
+                 class="profile-img">
+
+            <!-- INITIAL FALLBACK -->
+            <span th:if="${user.profileImage == null}"
+                  th:text="${#strings.substring(user.name,0,1)}">
+                U
+            </span>
+
+        </div>
+
+        <!-- USER INFO -->
+        <h2 class="profile-name" th:text="${user.name}">User Name</h2>
+        <p class="profile-email" th:text="${user.email}">email@example.com</p>
+
+        <span class="profile-role"
+              th:text="${user.role == 'ARTIST' ? 'Artist' : 'User'}">
+            Role
+        </span>
+
+        <!-- PROFILE ACTIONS (ONLY ONCE) -->
+        <div class="profile-actions">
+            <a th:href="@{/profile/edit}" class="btn-primary">
+                Edit Profile
+            </a>
+            <a th:href="@{/dashboard}" class="btn-secondary">
+                Back to Dashboard
+            </a>
+        </div>
+
+    </div>
+
+    <!-- ================= ARTIST ARTWORK SECTION ================= -->
+    <div class="artist-section" th:if="${user.role == 'ARTIST'}">
+
+        <h3 class="section-title">My Artworks</h3>
+
+        <p class="empty-text"
+           th:if="${myArtworks == null or #lists.isEmpty(myArtworks)}">
+            You haven’t uploaded any artworks yet.
+        </p>
+
+        <!-- LINE VIEW -->
+        <div class="artwork-list"
+             th:if="${myArtworks != null and !#lists.isEmpty(myArtworks)}">
+
+            <div class="artwork-row" th:each="art : ${myArtworks}">
+
+                <img class="row-image"
+                     th:src="@{'/uploads/' + ${art.imageName}}"
+                     alt="Artwork">
+
+                <div class="row-details">
+                    <h4 th:text="${art.title}">Artwork Title</h4>
+                    <p class="row-price">
+                        ₹ <span th:text="${art.price}">0</span>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Artwork Gallery</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body class="gallery-page">
+
+<h1 class="gallery-title">Artwork Gallery</h1>
+<p class="gallery-subtitle">Explore and buy stunning digital art</p>
+
+<div class="gallery-container">
+
+    <div class="art-card" th:each="art : ${artworks}">
+
+        <img class="art-image"
+             th:src="@{'/uploads/' + ${art.imageName}}"
+             alt="Artwork">
+
+        <!-- TITLE -->
+        <h3 th:text="${art.title}"></h3>
+
+        <!-- ARTIST NAME (FEATURE 3) -->
+        <p class="artist-name">
+            By <span th:text="${art.artist.name}"></span>
+        </p>
+
+        <!-- DESCRIPTION -->
+        <p th:text="${art.description}"></p>
+
+        <!-- PRICE -->
+        <div class="art-price">
+            ₹ <span th:text="${art.price}"></span>
+        </div>
+
+        <div class="art-actions">
+
+            <!-- BUY BUTTON (EVERYONE) -->
+            <a th:href="@{/buy/{id}(id=${art.id})}"
+               class="btn-buy">
+                Buy Now
+            </a>
+
+            <!-- DELETE BUTTON (ONLY OWNER ARTIST + CONFIRMATION) -->
+            <div th:if="${currentUser.role == 'ARTIST' and currentUser.id == art.artist.id}">
+                <form th:action="@{/artwork/delete/{id}(id=${art.id})}"
+                      method="post">
+                    <button type="submit"
+                            class="btn-delete"
+                            onclick="return confirm('Are you sure you want to delete this artwork?')">
+                        Delete
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | Digital Art Marketplace</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body class="dashboard-page">
+
+<!-- Animated background -->
+<div class="bg-gradient"></div>
+
+<div class="dashboard-wrapper">
+
+    <h1 class="dash-title">Your Dashboard</h1>
+    <p class="dash-subtitle">Manage your digital art journey</p>
+
+    <div class="dash-grid">
+
+        <!-- EXPLORE -->
+        <a th:href="@{/gallery}" class="dash-card blue">
+            <h3>Explore Art</h3>
+            <p>Discover stunning digital creations</p>
+        </a>
+
+        <!-- UPLOAD (ARTIST ONLY, OPTIONAL) -->
+        <a th:href="@{/upload}" class="dash-card purple">
+            <h3>Upload Artwork</h3>
+            <p>Showcase your creativity to the world</p>
+        </a>
+
+        <!-- PROFILE -->
+        <a th:href="@{/profile}" class="dash-card green">
+            <h3>My Profile</h3>
+            <p>View your account & artworks</p>
+        </a>
+
+        <!-- LOGOUT -->
+        <a th:href="@{/logout}" class="dash-card red">
+            <h3>Logout</h3>
+            <p>Safely exit your account</p>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
